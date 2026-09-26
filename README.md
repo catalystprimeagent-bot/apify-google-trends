@@ -70,7 +70,7 @@ silently dropped. The only way a run fails outright is zero usable search terms 
   requested time range.
 - `relatedQueries`: a ranked list of related search queries as Google Trends returns them, each
   with a value, a formatted value, whether it had data, and a `ranking` field of `"top"` or
-  `"rising"` — both of Google's lists are included, not just the top one.
+  `"rising"`: both of Google's lists are included, not just the top one.
 
 `charged` reports whether this row's lookup was billed (see Pricing). A `no_data` row is never
 charged, since it can't deliver anything to bill for.
