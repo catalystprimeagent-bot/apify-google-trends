@@ -1,0 +1,76 @@
+{
+  "title": "Google Trends Lookup",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchTerms": {
+      "title": "Search terms",
+      "type": "array",
+      "description": "List of search terms to look up on Google Trends.",
+      "editor": "stringList",
+      "items": { "type": "string" },
+      "prefill": ["coffee"]
+    },
+    "terms": {
+      "title": "Terms (alias of searchTerms)",
+      "type": "array",
+      "description": "Alias of 'searchTerms' for compatibility with tools that use this field name.",
+      "editor": "stringList",
+      "items": { "type": "string" }
+    },
+    "keywords": {
+      "title": "Keywords (alias of searchTerms)",
+      "type": "array",
+      "description": "Alias of 'searchTerms' for compatibility with tools that use this field name.",
+      "editor": "stringList",
+      "items": { "type": "string" }
+    },
+    "queries": {
+      "title": "Queries (alias of searchTerms)",
+      "type": "array",
+      "description": "Alias of 'searchTerms' for compatibility with tools that use this field name. Accepts plain strings or {\"query\": \"...\"} objects.",
+      "editor": "stringList"
+    },
+    "term": {
+      "title": "Single term (alias of searchTerms)",
+      "type": "string",
+      "description": "Alias of 'searchTerms' for a single search term.",
+      "editor": "textfield"
+    },
+    "timeRange": {
+      "title": "Time range",
+      "type": "string",
+      "description": "Time window to fetch interest data for.",
+      "editor": "select",
+      "enum": ["pastHour", "past4Hours", "pastDay", "past7Days", "past30Days", "past90Days", "past12Months", "past5Years"],
+      "enumTitles": ["Past hour", "Past 4 hours", "Past day", "Past 7 days", "Past 30 days", "Past 90 days", "Past 12 months", "Past 5 years"],
+      "default": "past12Months"
+    },
+    "category": {
+      "title": "Category",
+      "type": "integer",
+      "description": "Google Trends numeric category ID to scope results to. 0 means all categories.",
+      "default": 0
+    },
+    "outputs": {
+      "title": "Outputs",
+      "type": "array",
+      "description": "Which datasets to return per search term. Leave empty for both. 'relatedTopics' was removed 2026-09-26: Google's own related-topics widget came back empty for every term tested, worldwide and per-country alike.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": ["interestOverTime", "relatedQueries"],
+        "enumTitles": ["Interest over time", "Related queries"]
+      },
+      "default": ["interestOverTime", "relatedQueries"]
+    },
+    "timeoutSeconds": {
+      "title": "Per-request timeout (seconds)",
+      "type": "integer",
+      "description": "How long to wait for each Google Trends request before giving up. Clamped to 5-60.",
+      "default": 20,
+      "minimum": 5,
+      "maximum": 60
+    }
+  }
+}

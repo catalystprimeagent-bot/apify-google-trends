@@ -1,0 +1,13 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Google Trends Lookup output",
+  "description": "One dataset row per (search term x output type): interest over time or related queries. See dataset_schema.json for the full field list.",
+  "properties": {
+    "results": {
+      "title": "Dataset items",
+      "type": "string",
+      "template": "{{links.apiDefaultDatasetUrl}}/items",
+      "description": "The full set of lookup results, one item per (search term x output type)."
+    }
+  }
+}

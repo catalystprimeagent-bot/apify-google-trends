@@ -1,0 +1,95 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+      "term": {
+        "type": "string",
+        "title": "Search term",
+        "description": "The search term this row is for, as resolved from the input (aliases merged and deduped).",
+        "example": "coffee"
+      },
+      "outputType": {
+        "type": "string",
+        "title": "Output type",
+        "description": "Which of the two datasets this row holds: interestOverTime or relatedQueries.",
+        "example": "interestOverTime"
+      },
+      "timeRange": {
+        "type": "string",
+        "title": "Time range",
+        "description": "The resolved timeRange enum value this row was fetched for.",
+        "example": "past12Months"
+      },
+      "category": {
+        "type": "integer",
+        "title": "Category",
+        "description": "The Google Trends category ID this row was scoped to. 0 means all categories.",
+        "example": 0
+      },
+      "status": {
+        "type": "string",
+        "title": "Status",
+        "description": "\"ok\" (data returned), \"no_data\" (Google Trends had nothing for this term/range/category, a normal outcome, not a failure) or \"error\" (the request itself failed).",
+        "example": "ok"
+      },
+      "fetchMs": {
+        "type": "integer",
+        "title": "Fetch time (ms)",
+        "description": "Wall-clock time for the request(s) behind this row. Shown up front so a buyer evaluating us against a tool that times out on a quarter of its runs sees reliability without clicking anything.",
+        "example": 120
+      },
+      "charged": {
+        "type": "boolean",
+        "title": "Charged",
+        "description": "Whether this row was billed under pay-per-event. Always false for a \"no_data\" row, and always false while the Actor has no price set.",
+        "example": false
+      },
+      "data": {
+        "type": "array",
+        "title": "Data",
+        "description": "The requested data, shape depends on outputType. interestOverTime: [{time, formattedTime, value, hasData}]. relatedQueries: [{query, value, formattedValue, hasData, link, ranking}], where ranking is \"top\" or \"rising\". Omitted from the row when status is not \"ok\".",
+        "example": [
+          { "time": "1758758400", "formattedTime": "Sep 25, 2026", "value": [42], "hasData": [true] }
+        ]
+      },
+      "error": {
+        "type": "string",
+        "title": "Error",
+        "description": "Set when status is \"no_data\" or \"error\", explaining which. Empty when status is \"ok\".",
+        "example": ""
+      }
+    },
+    "required": ["term", "outputType", "timeRange", "category", "status", "fetchMs", "charged"]
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "description": "One row per search term x output type, with status and fetch time up front.",
+      "transformation": {
+        "fields": [
+          "term",
+          "outputType",
+          "status",
+          "fetchMs",
+          "timeRange",
+          "charged",
+          "error"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "term": { "label": "Term", "format": "text" },
+          "outputType": { "label": "Output", "format": "text" },
+          "status": { "label": "Status", "format": "text" },
+          "fetchMs": { "label": "Fetch (ms)", "format": "number" },
+          "timeRange": { "label": "Time Range", "format": "text" },
+          "charged": { "label": "Charged", "format": "boolean" },
+          "error": { "label": "Error", "format": "text" }
+        }
+      }
+    }
+  }
+}
