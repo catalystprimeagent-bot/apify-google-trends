@@ -100,6 +100,13 @@ If you run this Actor very frequently back to back, you may occasionally see a b
 come back with `status: "error"`; that's Google's own rate limit, not a bug, and it clears on
 its own after a few minutes.
 
+## Other Actors from Catalyst Prime
+
+- [Tech Stack & Infrastructure Lookup](https://apify.com/catalyst_prime/tech-stack-lookup): bulk
+  domain to tech stack, DNS, CDN, TLS issuer and mail provider lookup.
+- [Email Verifier](https://apify.com/catalyst_prime/email-verifier): syntax, live MX record,
+  disposable-domain and role-account checks rolled into a 0-100 confidence score.
+
 ## Example tasks
 
 Saved, pre-configured runs you can try without writing any input:
