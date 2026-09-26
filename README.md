@@ -10,6 +10,10 @@ per term plus one per requested output, at 512 MB, typically finishing in a few 
 row also reports its own fetch time and status, so you can see reliability without opening a
 single result.
 
+**Run it on Apify:** [https://apify.com/catalyst_prime/google-trends](https://apify.com/catalyst_prime/google-trends)
+
+Free to run, no setup. You only use your own Apify account's included usage.
+
 ## Input
 
 Give it one or more terms via `searchTerms` (a JSON array, a single string, or a comma or
@@ -95,3 +99,12 @@ run of a normal size (a handful of terms) is well within what this Actor has tes
 If you run this Actor very frequently back to back, you may occasionally see a batch of rows
 come back with `status: "error"`; that's Google's own rate limit, not a bug, and it clears on
 its own after a few minutes.
+
+## Example tasks
+
+Saved, pre-configured runs you can try without writing any input:
+
+- [Holiday shopping demand](https://apify.com/catalyst_prime/google-trends/examples/holiday-shopping-demand)
+- [Five year category trend](https://apify.com/catalyst_prime/google-trends/examples/five-year-category-trend)
+- [Compare brand search interest](https://apify.com/catalyst_prime/google-trends/examples/compare-brand-search-interest)
+- [Top related searches for a topic](https://apify.com/catalyst_prime/google-trends/examples/top-related-searches-for-a-topic)
