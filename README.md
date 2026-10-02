@@ -1,8 +1,12 @@
-# Google Trends Lookup
+# Google Trends Lookup & Search Interest Tracker
 
-Bulk Google Trends lookup. For a list of search terms you get interest over time and related
-queries (both top and rising), read directly from Trends' own JSON endpoints. No headless
-browser.
+Give it a list of search terms or keywords. Each one comes back with **search interest over time**
+and its **top and rising related queries**, read straight from Google Trends' own JSON endpoints.
+No headless browser.
+
+Use it to track how interest in a keyword moves over the last hour through the last five years, to
+compare a list of terms against each other, or to pull the rising queries around a topic for
+keyword research.
 
 That matters because the market leader times out on close to a quarter of its runs while doing
 this with a full browser at 4 GB of memory. This Actor reads the same data with one HTTP request
